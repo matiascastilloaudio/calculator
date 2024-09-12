@@ -65,7 +65,11 @@ function operate() {
     } else if (operator === '*') {
         firstNumber = (num1 * num2).toString();
     } else if (operator === '/') {
-        firstNumber = (num1 / num2).toString();
+        if (num2 == 0) {
+            firstNumber = 'Error';
+        } else {
+            firstNumber = (num1 / num2).toString();
+        }
     }
 
     // Limitar el resultado a la longitud máxima
