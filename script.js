@@ -2,9 +2,9 @@ let firstNumber = '';
 let secondNumber = '';
 let operator = null;
 let isSecondNumber = false;
-const maxLength = 7;  // Definir el límite de caracteres
+const maxLength = 7;  // character limit
 
-// Obtener los botones de números
+// get selected number 
 document.querySelectorAll('.number').forEach(button => {
     button.addEventListener('click', function () {
         const number = button.textContent;
@@ -14,27 +14,25 @@ document.querySelectorAll('.number').forEach(button => {
 
 function handleNumber(number) {
     if (number === ',') {
-        number = '.';  // Reemplaza la coma por un punto decimal
+        number = '.';
     }
 
     if (!isSecondNumber) {
-        if (firstNumber.length < maxLength) {  // Limitar la longitud del primer número
+        if (firstNumber.length < maxLength) {
             firstNumber += number;
         }
-    } else {
-        if (secondNumber.length < maxLength) {  // Limitar la longitud del segundo número
-            secondNumber += number;
-        }
+    } else if (secondNumber.length < maxLength) {
+        secondNumber += number;
     }
+
     updateDisplay();
 }
 
-// Obtener los botones de operadores
+// get selected operator 
 document.querySelectorAll('.op').forEach(button => {
     button.addEventListener('click', function () {
         const op = button.textContent;
 
-        // Si el operador es porcentaje o cambiar signo
         if (op === '%') {
             operatePercentage();
             updateDisplay();
@@ -47,16 +45,15 @@ document.querySelectorAll('.op').forEach(button => {
                 updateDisplay();
             }
         } else {
-            operator = (op === 'x') ? '*' : op;  // Reemplazar la "x" por "*"
-            isSecondNumber = true;  // Ahora ingresamos el segundo número
+            operator = (op === 'x') ? '*' : op;
+            isSecondNumber = true;
         }
     });
 });
 
-// Realizar el cálculo principal
 function operate() {
-    const num1 = parseFloat(firstNumber.slice(0, maxLength));  // Limitar longitud antes del cálculo
-    const num2 = parseFloat(secondNumber.slice(0, maxLength));  // Limitar longitud antes del cálculo
+    const num1 = parseFloat(firstNumber.slice(0, maxLength));
+    const num2 = parseFloat(secondNumber.slice(0, maxLength));
 
     if (operator === '+') {
         firstNumber = (num1 + num2).toString();
@@ -72,16 +69,13 @@ function operate() {
         }
     }
 
-    // Limitar el resultado a la longitud máxima
     firstNumber = firstNumber.slice(0, maxLength);
 
-    // Resetear el segundo número y el operador para la siguiente operación
     secondNumber = '';
     operator = null;
     isSecondNumber = false;
 }
 
-// Operar el porcentaje
 function operatePercentage() {
     if (!isSecondNumber) {
         firstNumber = (parseFloat(firstNumber) / 100).toString();
@@ -90,7 +84,6 @@ function operatePercentage() {
     }
 }
 
-// Cambiar el signo de un número
 function toggleSign() {
     if (!isSecondNumber) {
         firstNumber = (parseFloat(firstNumber) * -1).toString();
@@ -99,10 +92,9 @@ function toggleSign() {
     }
 }
 
-// Actualizar la pantalla
+// update display
 function updateDisplay() {
     const displayValue = document.querySelector('#display p');
-    // let displayText = firstNumber || '0';
 
     if (!isSecondNumber) {
         displayValue.textContent = firstNumber.slice(0, maxLength) || '0';
@@ -112,7 +104,7 @@ function updateDisplay() {
     displayValue.textContent = displayText.slice(0, maxLength);
 }
 
-// Limpiar pantalla
+// reset display
 document.querySelector('.alt').addEventListener('click', function () {
     firstNumber = '';
     secondNumber = '';
