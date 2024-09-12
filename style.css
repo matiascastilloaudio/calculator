@@ -1,5 +1,6 @@
 body {
     display: flex;
+    align-items: flex-start;
     justify-content: center;
     font-family: "SF Pro Rounded", sans-serif;
     background-image: url(https://wallpaperbat.com/img/63775-os-x-wallpaper-top-free-os-x-background.jpg);
@@ -7,6 +8,7 @@ body {
     background-position: center;
     background-size: cover;
     padding: 10%;
+    height: 100vh;
 }
 
 #calculator {
