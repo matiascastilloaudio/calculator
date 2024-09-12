@@ -2,7 +2,7 @@ let firstNumber = '';
 let secondNumber = '';
 let operator = null;
 let isSecondNumber = false;
-const maxLength = 8;  // Definir el límite de caracteres
+const maxLength = 7;  // Definir el límite de caracteres
 
 // Obtener los botones de números
 document.querySelectorAll('.number').forEach(button => {
